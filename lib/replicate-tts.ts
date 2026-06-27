@@ -12,10 +12,9 @@ function getReplicateClient(): Replicate {
   return _replicate;
 }
 
-// F5-TTS on Replicate — pinned to a stable version hash.
-// To swap to XTTS-v2: replace with "lucataco/xtts-v2:<version-hash>"
-const F5_TTS_MODEL =
-  "lucataco/f5-tts:87faf6dd7a692dd82043f662e76c8048b6a18b2c6a185a2ef6e87ed42985e5e5" as const;
+// XTTS-v2 on Replicate (F5-TTS was removed from the platform)
+const TTS_MODEL =
+  "lucataco/xtts-v2:684bc3855b37866c0c65add2ff39c78f3dea3f4ff103a436465326e0f438d55e" as const;
 
 export async function generateSpeech(
   text: string,
@@ -23,13 +22,12 @@ export async function generateSpeech(
 ): Promise<string> {
   const replicate = getReplicateClient();
 
-  const output = await replicate.run(F5_TTS_MODEL, {
+  const output = await replicate.run(TTS_MODEL, {
     input: {
-      gen_text: text,
-      ref_audio_url: referenceAudioUrl,
-      ref_text: "",
-      model_type: "F5-TTS",
-      remove_silence: true,
+      text,
+      speaker: referenceAudioUrl,
+      language: "en",
+      cleanup_voice: false,
     },
   });
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateSpeech } from "@/lib/replicate-tts";
 
-const MAX_TEXT_LENGTH = 600;
+const MAX_TEXT_LENGTH = 1000;
 
 export async function POST(req: NextRequest) {
   let body: { text?: string };
