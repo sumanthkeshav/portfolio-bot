@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     process.env.NEXT_PUBLIC_BASE_URL ??
     `${req.headers.get("x-forwarded-proto") ?? "http"}://${req.headers.get("host")}`;
 
-  const referenceAudioUrl = `${baseUrl}/voice-reference.m4a`;
+  const referenceAudioUrl = `${baseUrl}/voice-reference.wav`;
 
   try {
     const audioUrl = await generateSpeech(text.trim(), referenceAudioUrl);
