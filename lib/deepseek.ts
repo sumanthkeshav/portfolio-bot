@@ -15,5 +15,4 @@ export function getDeepSeekClient(): OpenAI {
   return _client;
 }
 
-// Fallback: "gpt-4o-mini" (swap baseURL + apiKey to OpenAI)
-export const DEEPSEEK_MODEL = "deepseek-v4-flash";
+export const DEEPSEEK_MODEL = "deepseek-chat";
