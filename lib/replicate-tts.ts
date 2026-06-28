@@ -12,22 +12,24 @@ function getReplicateClient(): Replicate {
   return _replicate;
 }
 
-// XTTS-v2 on Replicate (F5-TTS was removed from the platform)
-const TTS_MODEL =
-  "lucataco/xtts-v2:684bc3855b37866c0c65add2ff39c78f3dea3f4ff103a436465326e0f438d55e" as const;
+const MODEL =
+  "minimax/speech-02-hd:b2c687e53557eee08b35b59620f88750671e97b9a91f351ea6797ac838a0773d" as const;
 
-export async function generateSpeech(
-  text: string,
-  referenceAudioUrl: string
-): Promise<string> {
+const VOICE_ID = "R8_ZVBKSSCZ";
+
+export async function generateSpeech(text: string): Promise<string> {
   const replicate = getReplicateClient();
 
-  const output = await replicate.run(TTS_MODEL, {
+  const output = await replicate.run(MODEL, {
     input: {
       text,
-      speaker: referenceAudioUrl,
-      language: "en",
-      cleanup_voice: false,
+      voice_id: VOICE_ID,
+      speed: 1.0,
+      volume: 1.0,
+      pitch: 0,
+      emotion: "auto",
+      audio_format: "mp3",
+      language_boost: "English",
     },
   });
 

@@ -24,14 +24,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ??
-    `${req.headers.get("x-forwarded-proto") ?? "http"}://${req.headers.get("host")}`;
-
-  const referenceAudioUrl = `${baseUrl}/voice-reference.wav`;
-
   try {
-    const audioUrl = await generateSpeech(text.trim(), referenceAudioUrl);
+    const audioUrl = await generateSpeech(text.trim());
     return NextResponse.json({ audioUrl });
   } catch (err) {
     console.error("[/api/tts]", err);
