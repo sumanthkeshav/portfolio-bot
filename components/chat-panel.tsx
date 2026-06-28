@@ -110,11 +110,12 @@ export function ChatPanel() {
   return (
     <div className="flex flex-col h-full bg-[#111111] rounded-2xl border border-white/[0.06] overflow-hidden">
       {/* Header */}
-      <div className="px-4 py-3 border-b border-white/[0.06] shrink-0">
+      <div className="px-4 py-3 border-b border-white/[0.06] shrink-0 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
-          <span className="text-xs text-white/40 font-medium tracking-wide">AI KESHAV</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
+          <span className="text-xs text-white/35 font-medium">AI Keshav</span>
         </div>
+        <span className="text-[11px] text-white/20">voice enabled</span>
       </div>
 
       {/* Transcript */}
